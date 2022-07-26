@@ -6,11 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
 public class CarDTO {
+    private long id;
     private String registrationNO;
     private String brand;
     private String type;
@@ -22,12 +25,12 @@ public class CarDTO {
     private String backViewImg;
     private String sideViewImg;
     private String internalViewImg;
-    private double dailyRate;
-    private double monthlyRate;
-    private double freeKmForPrice;
-    private double freeKmForDuration;
-    private double lossDamageWaiver;
-    private double priceForExtraKm;
-    private double completeKm;
+    private BigDecimal dailyRate;
+    private BigDecimal monthlyRate;
+    private BigDecimal freeKmForPrice;
+    private BigDecimal freeKmForDuration;
+    private BigDecimal lossDamageWaiver;
+    private BigDecimal priceForExtraKm;
+    private BigDecimal completeKm;
     private Boolean isAvailable = false;
 }

@@ -16,6 +16,7 @@ import java.util.Date;
 @Entity
 public class CarRentDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String rentId;
 
     @Temporal(TemporalType.DATE)

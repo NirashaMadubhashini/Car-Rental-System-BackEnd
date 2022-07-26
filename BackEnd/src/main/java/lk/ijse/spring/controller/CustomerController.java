@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/v1/customer")
+@RequestMapping("api/v1/customer/customer")
 @CrossOrigin
 public class CustomerController {
     @Autowired

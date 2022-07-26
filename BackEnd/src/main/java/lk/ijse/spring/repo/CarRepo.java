@@ -9,20 +9,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public interface CarRepo  extends JpaRepository<Car, String> {
+public interface CarRepo  extends JpaRepository<Car, Long> {
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Car SET status=:status WHERE registrationNO=:registrationNO", nativeQuery = true)
-    void updateCarStatus(@Param("status") String status, @Param("registrationNO") String registrationNO);
+    @Query(value = "UPDATE Car SET status=:status WHERE id=:id", nativeQuery = true)
+    void updateCarStatus(@Param("status") String status, @Param("id") long id);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Car SET frontViewImg=:frontViewImg,backViewImg=:backViewImg,internalViewImg=:internalViewImg,sideViewImg=:sideViewImg WHERE registrationNO=:registrationNO", nativeQuery = true)
-    void updateCarFilePaths(@Param("frontViewImg") String frontViewImg, @Param("backViewImg") String backViewImg, @Param("internalViewImg") String internalViewImg, @Param("sideViewImg") String sideViewImg, @Param("registrationNO") String registrationNO);
+    @Query(value = "UPDATE Car SET frontViewImg=:frontViewImg,backViewImg=:backViewImg,internalViewImg=:internalViewImg,sideViewImg=:sideViewImg WHERE id=:id", nativeQuery = true)
+    void updateCarFilePaths(@Param("frontViewImg") String frontViewImg, @Param("backViewImg") String backViewImg, @Param("internalViewImg") String internalViewImg, @Param("sideViewImg") String sideViewImg, @Param("id")  long id);
 
     @Query(value = "SELECT * FROM Car WHERE status=:status", nativeQuery = true)
     List<Car> getAllCarsByStatus(@Param("status") String status);
 
-    @Query(value = "SELECT COUNT(registrationNO) FROM Car WHERE status=:status", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM Car WHERE status=:status", nativeQuery = true)
     int getCountOfCarsByStatus(@Param("status") String status);
 }

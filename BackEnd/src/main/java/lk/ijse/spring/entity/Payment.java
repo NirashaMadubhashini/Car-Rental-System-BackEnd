@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Entity
 public class Payment {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String paymentId;
     private String paymentType;//CARD,CASH
     private Double fullPayment;

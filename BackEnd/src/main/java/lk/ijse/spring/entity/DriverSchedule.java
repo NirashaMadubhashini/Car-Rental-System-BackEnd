@@ -15,6 +15,7 @@ import java.util.Date;
 @Entity
 public class DriverSchedule {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String scheduleId;
 
     @Temporal(TemporalType.DATE)

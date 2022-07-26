@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class Customer {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.AUTO)
     private String customerId;
     private String name;
     private String address;

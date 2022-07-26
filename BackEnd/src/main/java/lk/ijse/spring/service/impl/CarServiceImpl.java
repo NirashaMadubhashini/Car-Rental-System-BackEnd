@@ -23,7 +23,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void saveCar(CarDTO dto) {
-        if (!repo.existsById(dto.getRegistrationNO())) {
+        if (!repo.existsById(dto.getId())) {
             repo.save(mapper.map(dto, Car.class));
         } else {
             throw new RuntimeException("Car Already Exists");
@@ -32,7 +32,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void updateCar(CarDTO dto) {
-        if (repo.existsById(dto.getRegistrationNO())) {
+        if (repo.existsById(dto.getId())) {
             repo.save(mapper.map(dto, Car.class));
         } else {
             throw new RuntimeException("No Such Car To Update");
@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void deleteCar(String registrationNO) {
+    public void deleteCar(long registrationNO) {
         if (repo.existsById(registrationNO)) {
             repo.deleteById(registrationNO);
         } else {
@@ -55,23 +55,23 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDTO searchCar(String registrationNO) {
-        return mapper.map(repo.findById(registrationNO).get(), CarDTO.class);
+    public CarDTO searchCar(long id) {
+        return mapper.map(repo.findById(id).get(), CarDTO.class);
     }
 
     @Override
-    public void updateCarStatus(String registrationNO, String status) {
-        if (repo.existsById(registrationNO)) {
-            repo.updateCarStatus(status, registrationNO);
+    public void updateCarStatus(long id, String status) {
+        if (repo.existsById(id)) {
+            repo.updateCarStatus(status,id);
         } else {
             throw new RuntimeException("No Such Car To Update");
         }
     }
 
     @Override
-    public void updateCarFilePaths(String frontImg, String backImg, String interImg, String sideImg, String registrationID) {
-        if (repo.existsById(registrationID)) {
-            repo.updateCarFilePaths(frontImg, backImg, interImg, sideImg, registrationID);
+    public void updateCarFilePaths(String frontImg, String backImg, String interImg, String sideImg,long id) {
+        if (repo.existsById(id)) {
+            repo.updateCarFilePaths(frontImg, backImg, interImg, sideImg, id);
         } else {
             throw new RuntimeException("No Such Car To Update");
         }

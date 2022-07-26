@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/v1/car")
+@RequestMapping("api/v1/admin/car")
 @CrossOrigin
 public class CarController {
     @Autowired
@@ -26,7 +26,7 @@ public class CarController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCar(CarDTO dto) {
+    public ResponseUtil saveCar(@RequestBody CarDTO dto) {
         service.saveCar(dto);
         return new ResponseUtil(200, "Saved", null);
     }
@@ -37,20 +37,20 @@ public class CarController {
         return new ResponseUtil(200, "Updated", null);
     }
 
-    @DeleteMapping(params = {"registrationNo"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteCar(@RequestParam String registrationNo) {
-        service.deleteCar(registrationNo);
+    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteCar(@RequestParam  long id) {
+        service.deleteCar(id);
         return new ResponseUtil(200, "deleted", null);
     }
 
-    @GetMapping(path = "/{registrationNo}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchCar(@PathVariable String registrationNo) {
-        return new ResponseUtil(200, "Ok", service.searchCar(registrationNo));
+    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCar(@PathVariable  long id) {
+        return new ResponseUtil(200, "Ok", service.searchCar(id));
     }
 
-    @PutMapping(path = "/updateCarStatus/{registrationNO}/{status}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateCarStatus(@PathVariable String registrationNO, @PathVariable String status) {
-        service.updateCarStatus(registrationNO, status);
+    @PutMapping(path = "/updateCarStatus/{id}/{status}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateCarStatus(@PathVariable long id, @PathVariable String status) {
+        service.updateCarStatus(id, status);
         return new ResponseUtil(200, "Ok", null);
     }
 
@@ -64,8 +64,8 @@ public class CarController {
         return new ResponseUtil(200, "Ok", service.getCountOfCarsByStatus(status));
     }
 
-    @PutMapping(path = "/up/{registrationID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil uploadImagesAndPath(@RequestPart("frontImg") MultipartFile frontImg, @RequestPart("backImg") MultipartFile backImg, @RequestPart("interImg") MultipartFile interImg, @RequestPart("sideImg") MultipartFile sideImg, @PathVariable String registrationID) {
+    @PutMapping(path = "/up/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil uploadImagesAndPath(@RequestPart("frontImg") MultipartFile frontImg, @RequestPart("backImg") MultipartFile backImg, @RequestPart("interImg") MultipartFile interImg, @RequestPart("sideImg") MultipartFile sideImg, @PathVariable long id) {
         try {
             String projectPath = String.valueOf(new File("D:/Project Zone/2nd Sem/Easy Car Rental/BackEnd/src/main/resources/static/images"));
             File uploadsDir = new File(projectPath + "/Cars");
@@ -80,7 +80,7 @@ public class CarController {
             String interImgPath = projectPath + "/Cars/" + interImg.getOriginalFilename();
             String sideImgPath = projectPath + "/Cars/" + sideImg.getOriginalFilename();
 
-            service.updateCarFilePaths(frontImgPath, backImgPath, interImgPath, sideImgPath, registrationID);
+            service.updateCarFilePaths(frontImgPath, backImgPath, interImgPath, sideImgPath, id);
 
             return new ResponseUtil(200, "Uploaded", null);
 

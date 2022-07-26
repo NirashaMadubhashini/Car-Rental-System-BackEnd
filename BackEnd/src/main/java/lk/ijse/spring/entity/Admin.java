@@ -17,6 +17,7 @@ import javax.persistence.Id;
 @Entity
 public class Admin {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String adminId;
     private String username;
     private String password;
