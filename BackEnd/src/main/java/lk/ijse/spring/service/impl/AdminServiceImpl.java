@@ -23,30 +23,13 @@ public class AdminServiceImpl  implements AdminService {
 
     @Override
     public void saveAdmin(AdminDTO dto) {
-        if (!repo.existsById(dto.getAdminId())) {
+        if (!repo.existsByAdminId(dto.getAdminId())) {
             repo.save(mapper.map(dto, Admin.class));
         } else {
             throw new RuntimeException("Admin Already Exists");
         }
     }
 
-    @Override
-    public void updateAdmin(AdminDTO dto) {
-        if (repo.existsById(dto.getAdminId())) {
-            repo.save(mapper.map(dto, Admin.class));
-        } else {
-            throw new RuntimeException("No Such Admin to update");
-        }
-    }
-
-    @Override
-    public void deleteAdmin(String id) {
-        if (repo.existsById(id)) {
-            repo.deleteById(id);
-        } else {
-            throw new RuntimeException("No Such Admin To Delete");
-        }
-    }
 
     @Override
     public boolean findAdminByUserName(String username) {
@@ -64,24 +47,4 @@ public class AdminServiceImpl  implements AdminService {
         }.getType());
     }
 
-    @Override
-    public String generateAdminId() {
-        String lastId = repo.generateAdminId();
-        String id = "";
-
-        if (lastId != null) {
-            int tempId = Integer.parseInt(lastId.split("-")[1]);
-            tempId = tempId + 1;
-            if (tempId <= 9) {
-                id = "Ad-00" + tempId;
-            } else if (tempId <= 99) {
-                id = "Ad-0" + tempId;
-            } else if (tempId <= 999) {
-                id = "Ad-" + tempId;
-            }
-        } else {
-            id = "Ad-001";
-        }
-        return id;
-    }
 }

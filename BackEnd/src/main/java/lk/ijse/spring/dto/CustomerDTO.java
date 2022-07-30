@@ -1,22 +1,24 @@
 package lk.ijse.spring.dto;
 
 
+import lk.ijse.spring.entity.CarRentDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
 public class CustomerDTO {
-    private String customerId;
-    private String name;
+    private String nicNo;
     private String address;
     private int contactNo;
     private String email;
-    private String nicNo;
     private String nicImg;
     private String licenceNo;
     private String licenceImg;
@@ -24,5 +26,9 @@ public class CustomerDTO {
     private String password;
     private Boolean isRegistered=false;
     private Boolean isDriverRequested=false;
-    private Boolean isAccept;
+    private String isAccept;
+    private String type;//CUSTOMER
+
+    private List<CarRentDetailDTO> rentals = new ArrayList<>();
+
 }

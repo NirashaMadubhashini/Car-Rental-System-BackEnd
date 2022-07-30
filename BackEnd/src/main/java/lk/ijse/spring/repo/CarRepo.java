@@ -10,10 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface CarRepo  extends JpaRepository<Car, Long> {
+
+    boolean existsByRegistrationNO(String registrationNum);
+
+
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Car SET status=:status WHERE id=:id", nativeQuery = true)
-    void updateCarStatus(@Param("status") String status, @Param("id") long id);
+    @Query("delete from Car c where c.registrationNO = ?1")
+    void deleteByRegNo(String firstName);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Car  WHERE registrationNO=:registrationNO", nativeQuery = true)
+    void updateCar( @Param("registrationNO") String registrationNO);
 
     @Modifying
     @Transactional
@@ -23,6 +32,8 @@ public interface CarRepo  extends JpaRepository<Car, Long> {
     @Query(value = "SELECT * FROM Car WHERE status=:status", nativeQuery = true)
     List<Car> getAllCarsByStatus(@Param("status") String status);
 
-    @Query(value = "SELECT COUNT(id) FROM Car WHERE status=:status", nativeQuery = true)
+    @Query(value = "SELECT COUNT(registrationNO) FROM Car WHERE status=:status", nativeQuery = true)
     int getCountOfCarsByStatus(@Param("status") String status);
+
+    List<Object> findByRegistrationNO(String registrationNO);
 }

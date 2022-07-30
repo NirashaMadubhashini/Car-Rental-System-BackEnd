@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Data
 @ToString
 public class CarDTO {
-    private long id;
+    private long idCar;
     private String registrationNO;
     private String brand;
     private String type;

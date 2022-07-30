@@ -11,21 +11,20 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomerRepo extends JpaRepository<Customer, String> {
-    Optional<Customer> findCustomerByUsername(String username);
 
-    Optional<Customer> findCustomerByPassword(String password);
-
-    Optional<Customer> findCustomerByUsernameAndPassword(String username, String password);
-
-    @Query(value = "SELECT customerId FROM Customer ORDER BY customerId DESC LIMIT 1", nativeQuery = true)
-    String generateCustomerId();
+    boolean existsByNicNo(String NicNo);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Customer SET status='Accepted' WHERE customerId=:customerId", nativeQuery = true)
-    void updateCustomerStatus(@Param("customerId") String customerId);
+    @Query("delete from Customer c where c.nicNo = ?1")
+    void deleteByCustomerId(String firstName);
 
-    @Query(value = "SELECT * FROM Customer WHERE status='Pending'", nativeQuery = true)
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Customer  WHERE nicNo=:nicNo", nativeQuery = true)
+    void updateCustomer(@Param("nicNo") String nicNo);
+
+    @Query(value = "SELECT * FROM Customer WHERE isAccept='PENDING'", nativeQuery = true)
     List<Customer> findPendingCustomers();
 
     @Query(value = "SELECT * FROM Customer WHERE status='Accepted'", nativeQuery = true)
@@ -33,9 +32,9 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Customer SET nicFrontImg=:nicFrontImg,nicBackImg=:nicBackImg,licenceImg=:licenceImg WHERE customerId=:customerId", nativeQuery = true)
-    void updateCustomerFilePaths(@Param("nicFrontImg") String nicFrontImg, @Param("nicBackImg") String nicBackImg, @Param("licenceImg") String licenceImg, @Param("customerId") String customerId);
+    @Query(value = "UPDATE Customer SET nicFrontImg=:nicFrontImg,nicBackImg=:nicBackImg,licenceImg=:licenceImg WHERE nicNo=:nicNo", nativeQuery = true)
+    void updateCustomerFilePaths(@Param("nicFrontImg") String nicFrontImg, @Param("nicBackImg") String nicBackImg, @Param("licenceImg") String licenceImg, @Param("nicNo") String nicNo);
 
-    @Query(value = "SELECT COUNT(customerId) FROM Customer WHERE status='Accepted'",nativeQuery = true)
+    @Query(value = "SELECT COUNT(nicNo) FROM Customer WHERE status='Accepted'",nativeQuery = true)
     int countByCustomerId();
 }

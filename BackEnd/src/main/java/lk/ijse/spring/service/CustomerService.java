@@ -9,21 +9,11 @@ public interface CustomerService {
 
     void updateCustomer(CustomerDTO dto);
 
-    CustomerDTO searchCustomer(String customerId);
+    CustomerDTO searchCustomer(String nicNo);
 
-    void deleteCustomer(String customerId);
+    void deleteCustomer(String nicNo);
 
     List<CustomerDTO> getAllCustomers();
-
-    boolean findCustomerByUsername(String username);
-
-    boolean findCustomerByPassword(String password);
-
-    CustomerDTO findCustomerByUsernameAndPassword(String username, String password);
-
-    String generateCustomerId();
-
-    void updateCustomerStatus(String id);
 
     List<CustomerDTO> getAllPendingCustomers();
 

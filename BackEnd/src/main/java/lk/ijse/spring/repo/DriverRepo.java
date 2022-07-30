@@ -11,21 +11,24 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DriverRepo extends JpaRepository<Driver, String> {
-    Optional<Driver> findDriverByUsername(String username);
 
-    Optional<Driver> findDriverByPassword(String password);
+    boolean existsByDid(String  did);
 
-    Optional<Driver> findDriverByUsernameAndPassword(String username, String password);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Driver SET availability = false WHERE licenceNo=:licenceNo", nativeQuery = true)
-    void updateDriverNonAvailable(@Param("licenceNo") String licenceNo);
+    @Query("delete from Driver d where d.did= ?1")
+    void deleteByLicenseNo(String firstName);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Driver SET availability = true WHERE licenceNo=:licenceNo", nativeQuery = true)
-    void updateDriverAvailable(@Param("licenceNo") String licenceNo);
+    @Query(value = "UPDATE Driver WHERE did =:did ", nativeQuery = true)
+    void updateDriver(@Param("did") String did);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Driver SET availability = true WHERE did=:did ", nativeQuery = true)
+    void updateDriverAvailable(@Param("did") String licenseNo );
 
     @Query(value = "SELECT * FROM Driver WHERE availability=true", nativeQuery = true)
     List<Driver> getAllAvailableDrivers();
@@ -33,6 +36,6 @@ public interface DriverRepo extends JpaRepository<Driver, String> {
     @Query(value = "SELECT * FROM Driver WHERE availability=false", nativeQuery = true)
     List<Driver> getAllNonAvailableDrivers();
 
-    @Query(value = "SELECT COUNT(licenceNo) FROM Driver WHERE availability=:availability", nativeQuery = true)
+    @Query(value = "SELECT COUNT(did) FROM Driver WHERE availability=:availability", nativeQuery = true)
     int getCountOfDriversByStatus(@Param("availability") boolean availability);
 }

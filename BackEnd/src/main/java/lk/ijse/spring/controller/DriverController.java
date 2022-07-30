@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/driver")
+@RequestMapping("api/v1/admin/driver")
 @CrossOrigin
 public class DriverController {
     @Autowired
@@ -22,57 +22,40 @@ public class DriverController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveDriver(DriverDTO dto) {
-        service.saveDriver(dto);
-        return new ResponseUtil(200, "Saved", null);
+    public ResponseUtil saveDriver(@RequestBody DriverDTO dto) {
+        if (!(dto.getDid().equals(""))){
+            service.saveDriver(dto);
+            return new ResponseUtil(200, "Saved", null);
+        }else {
+            return new ResponseUtil(404, "NotSaved", null);
+        }
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCustomer(@RequestBody DriverDTO dto) {
-        service.updateDriver(dto);
-        return new ResponseUtil(200, "Updated", null);
-    }
-
-    @DeleteMapping(params = {"licenceNo"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteDriver(@RequestParam String licenceNo) {
-        service.deleteDriver(licenceNo);
-        return new ResponseUtil(200, "Deleted", null);
-    }
-
-    @GetMapping(path = "/{licenceNo}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchDriver(@PathVariable String licenceNo) {
-        return new ResponseUtil(200, "Ok", service.searchDriver(licenceNo));
-    }
-
-    @GetMapping(path = "/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchDriverByUsernameAndPassword(@PathVariable String username, @PathVariable String password) {
-        if (service.findDriverByUsername(username)) {
-            if (service.findDriverByPassword(password)) {
-                return new ResponseUtil(200, "Login Successful", null);
-            } else {
-                return new ResponseUtil(404, "Incorrect Password", null);
-            }
-        } else {
-            return new ResponseUtil(404, "Incorrect Username", null);
+        if (!(dto.getDid().equals(""))){
+            service.updateDriver(dto);
+            return new ResponseUtil(200, "Updated", null);
+        }else {
+            return new ResponseUtil(404, "NotUpdated", null);
         }
     }
 
-    @GetMapping(path = "/set/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil findDriverByUsernameAndPassword(@PathVariable String username, @PathVariable String password) {
-        return new ResponseUtil(200, "Ok", service.findDriverByUsernameAndPassword(username, password));
+    @DeleteMapping(params = {"did"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteDriver(@RequestParam String did) {
+        if (!(did.equals(""))){
+            service.deleteDriver(did);
+            return new ResponseUtil(200, "Deleted", null);
+        }else {
+            return new ResponseUtil(404, "NotDeleted", null);
+        }
     }
 
-    @PutMapping(path = "/updateAvailable/{licenceNo}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateDriverAvailable(@PathVariable String licenceNo){
-        service.updateDriverAvailable(licenceNo);
-        return new ResponseUtil(200,"Updated",null);
+    @GetMapping(path = "/{did}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchDriver(@PathVariable String did) {
+        return new ResponseUtil(200, "Ok", service.searchDriver(did));
     }
 
-    @PutMapping(path = "/updateNonAvailable/{licenceNo}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateDriverNonAvailable(@PathVariable String licenceNo){
-        service.updateDriverNonAvailable(licenceNo);
-        return new ResponseUtil(200,"Ok",null);
-    }
 
     @GetMapping(path = "/getAllAvailableDrivers",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllAvailableDrivers(){

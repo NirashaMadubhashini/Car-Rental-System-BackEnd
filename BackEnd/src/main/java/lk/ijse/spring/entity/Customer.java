@@ -16,13 +16,11 @@ import java.util.List;
 @Entity
 public class Customer {
     @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-    private String customerId;
-    private String name;
+    @Column(name = "nicNo", unique = true, nullable = false)
+    private String nicNo;
     private String address;
     private int contactNo;
     private String email;
-    private String nicNo;
     private String nicImg;
     private String licenceNo;
     private String licenceImg;
@@ -30,7 +28,8 @@ public class Customer {
     private String password;
     private Boolean isRegistered=false;
     private Boolean isDriverRequested=false;
-    private Boolean isAccept;//PENDING,ACCEPTED,DENIED
+    private String isAccept;//PENDING,ACCEPTED,DENIED
+    private String type;//CUSTOMER
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<CarRentDetails> rentals = new ArrayList<>();

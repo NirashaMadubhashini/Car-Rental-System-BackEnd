@@ -9,15 +9,16 @@ public interface CarService {
 
     void updateCar(CarDTO dto);
 
-    void deleteCar(long id);
+    void deleteCar(String registrationNO);
 
     List<CarDTO> getAllCars();
 
-    CarDTO searchCar(long id);
+    CarDTO searchCar(String registrationNO);
 
-    void updateCarStatus(long id, String status);
+//    void updateCar(String registrationNO);
 
     void updateCarFilePaths(String frontImg, String backImg, String interImg, String sideImg, long id);
+
 
     List<CarDTO> getAllCarsByStatus(String status);
 

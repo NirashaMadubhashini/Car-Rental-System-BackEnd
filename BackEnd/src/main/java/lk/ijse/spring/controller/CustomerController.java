@@ -13,63 +13,58 @@ import java.io.File;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("api/v1/customer/customer")
+@RequestMapping("api/v1/customer")
 @CrossOrigin
 public class CustomerController {
     @Autowired
     CustomerService service;
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil saveCustomer(@RequestBody CustomerDTO dto) {
+        if (!(dto.getNicNo().equals(""))){
+            service.saveCustomer(dto);
+            return new ResponseUtil(200, "Saved", null);
+        }else {
+            return new ResponseUtil(404, "NotSaved", null);
+        }
+    }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllCustomers() {
         return new ResponseUtil(200, "Ok", service.getAllCustomers());
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCustomer(CustomerDTO dto) {
-        service.saveCustomer(dto);
-        return new ResponseUtil(200, "Saved", null);
-    }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCustomer(@RequestBody CustomerDTO dto) {
-        service.updateCustomer(dto);
-        return new ResponseUtil(200, "Updated", null);
+        if (!(dto.getNicNo().equals(""))){
+            service.updateCustomer(dto);
+            return new ResponseUtil(200, "Updated", null);
+        }else {
+            return new ResponseUtil(404, "NotUpdated", null);
+        }
     }
 
-    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteCustomer(@RequestParam String id) {
-        service.deleteCustomer(id);
-        return new ResponseUtil(200, "Deleted", null);
+    @DeleteMapping(params = {"nicNo"}, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteCustomer(@RequestParam String nicNo) {
+        if (!(nicNo.equals(""))){
+            service.deleteCustomer(nicNo);
+            return new ResponseUtil(200, "Deleted", null);
+        }else {
+            return new ResponseUtil(404, "NotDeleted", null);
+        }
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil searchCustomer(@PathVariable String id) {
-        return new ResponseUtil(200, "Ok", service.searchCustomer(id));
+    @GetMapping(path = "/{nicNo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCustomer(@PathVariable String nicNo) {
+        return new ResponseUtil(200, "Ok", service.searchCustomer(nicNo));
     }
 
     @GetMapping(path = "/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchCustomerByUsernameAndPassword(@PathVariable String username, @PathVariable String password) {
-        if (service.findCustomerByUsername(username)) {
-            if (service.findCustomerByPassword(password)) {
-                return new ResponseUtil(200, "Login Successful", null);
-            } else {
-                return new ResponseUtil(404, "Incorrect Password", null);
-            }
-        } else {
             return new ResponseUtil(404, "Incorrect Username", null);
-        }
-    }
 
-    @GetMapping(path = "/set/{username}/{password}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil findCustomerByUsernameAndPassword(@PathVariable String username, @PathVariable String password) {
-        return new ResponseUtil(200, "Ok", service.findCustomerByUsernameAndPassword(username, password));
-    }
-
-    @PutMapping(path = "/updateStatus/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil updateCustomerStatus(@PathVariable String id) {
-        service.updateCustomerStatus(id);
-        return new ResponseUtil(200, "Updated Status", null);
     }
 
     @GetMapping(path = "/pending", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -80,6 +75,16 @@ public class CustomerController {
     @GetMapping(path = "/accepted", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllAcceptedCustomers() {
         return new ResponseUtil(200, "Ok", service.getAllAcceptedCustomers());
+    }
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil acceptCustomer(@RequestBody CustomerDTO dto) {
+        if (!(dto.getNicNo().equals(""))){
+            service.saveCustomer(dto);
+            return new ResponseUtil(200, "Saved", null);
+        }else {
+            return new ResponseUtil(404, "NotSaved", null);
+        }
     }
 
     @PutMapping(path = "/up/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -111,8 +116,4 @@ public class CustomerController {
         return new ResponseUtil(200,"Ok",service.getCountOfCustomersRegistered());
     }
 
-    @GetMapping(path = "/generateCustomerId", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil generateCustomerId() {
-        return new ResponseUtil(200, "Ok", service.generateCustomerId());
-    }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class Driver {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "did", unique = true, nullable = false)
     private String did;
     private String name;
     private String address;

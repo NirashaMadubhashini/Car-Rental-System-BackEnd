@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/admin")
 @CrossOrigin
 public class AdminController {
+
     @Autowired
     AdminService service;
 
@@ -23,19 +24,12 @@ public class AdminController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveAdmin(AdminDTO dto) {
-        service.saveAdmin(dto);
-        return new ResponseUtil(200, "Saved", null);
+        if (!(dto.getAdminId().equals(""))){
+            service.saveAdmin(dto);
+            return new ResponseUtil(200, "Saved", null);
+        }else {
+            return new ResponseUtil(404, "NotSaved", null);
+        }
     }
 
-
-    @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil deleteAdmin(@RequestParam String id) {
-        service.deleteAdmin(id);
-        return new ResponseUtil(200, "Deleted", null);
-    }
-
-    @GetMapping(path = "/generateAdminID")
-    public ResponseUtil generateAdminId() {
-        return new ResponseUtil(200, "Ok", service.generateAdminId());
-    }
 }
