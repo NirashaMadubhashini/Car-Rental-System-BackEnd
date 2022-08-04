@@ -35,6 +35,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public void changeCustomerStatus(String type,String nicNo) {
+        if (repo.existsByNicNo(nicNo) ){
+            repo.updateCustomerStatus(type, nicNo);
+        } else {
+            throw new RuntimeException("No Such Customer To Update");
+        }
+    }
+
+    @Override
     public void updateCustomer(CustomerDTO dto) {
         if (repo.existsByNicNo(dto.getNicNo())) {
             repo.save(mapper.map(dto, Customer.class));

@@ -7,6 +7,8 @@ import java.util.List;
 public interface CustomerService {
     void saveCustomer(CustomerDTO dto);
 
+    void changeCustomerStatus(String type,String nicNo);
+
     void updateCustomer(CustomerDTO dto);
 
     CustomerDTO searchCustomer(String nicNo);

@@ -24,6 +24,11 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
     @Query(value = "UPDATE Customer  WHERE nicNo=:nicNo", nativeQuery = true)
     void updateCustomer(@Param("nicNo") String nicNo);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Customer SET isAccept=:type WHERE nicNo=:nicNo", nativeQuery = true)
+    void updateCustomerStatus(@Param("type") String type,@Param("nicNo") String nicNo);
+
     @Query(value = "SELECT * FROM Customer WHERE isAccept='PENDING'", nativeQuery = true)
     List<Customer> findPendingCustomers();
 

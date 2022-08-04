@@ -36,6 +36,8 @@ public class CarRentDetails {
     @Column(nullable = false)
     private Date returnTime;
 
+    private String location;
+
     private String slipFile;
 
     private String carType;//GENERAL,PREMIUM,LUXURY

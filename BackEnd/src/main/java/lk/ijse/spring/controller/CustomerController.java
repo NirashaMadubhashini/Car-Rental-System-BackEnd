@@ -56,7 +56,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping(path = "/{nicNo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(params = {"nicNo"}, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil searchCustomer(@PathVariable String nicNo) {
         return new ResponseUtil(200, "Ok", service.searchCustomer(nicNo));
     }
@@ -77,15 +77,7 @@ public class CustomerController {
         return new ResponseUtil(200, "Ok", service.getAllAcceptedCustomers());
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil acceptCustomer(@RequestBody CustomerDTO dto) {
-        if (!(dto.getNicNo().equals(""))){
-            service.saveCustomer(dto);
-            return new ResponseUtil(200, "Saved", null);
-        }else {
-            return new ResponseUtil(404, "NotSaved", null);
-        }
-    }
+
 
     @PutMapping(path = "/up/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil uploadImagesAndPath(@RequestPart("nicf") MultipartFile nicf, @RequestPart("nicb") MultipartFile nicb, @RequestPart("licenceImg") MultipartFile licenceImg, @PathVariable String id) {

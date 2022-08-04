@@ -1117,365 +1117,370 @@
       <DataType>bit(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="341" parent="301" name="pickUpDate">
+    <column id="341" parent="301" name="location">
       <Position>4</Position>
-      <DataType>date|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="342" parent="301" name="pickUpTime">
-      <Position>5</Position>
-      <DataType>time|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="343" parent="301" name="returnDate">
-      <Position>6</Position>
-      <DataType>date|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="344" parent="301" name="returnTime">
-      <Position>7</Position>
-      <DataType>time|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="345" parent="301" name="slipFile">
-      <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="346" parent="301" name="registrationNO">
+    <column id="342" parent="301" name="pickUpDate">
+      <Position>5</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="343" parent="301" name="pickUpTime">
+      <Position>6</Position>
+      <DataType>time|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="344" parent="301" name="returnDate">
+      <Position>7</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="345" parent="301" name="returnTime">
+      <Position>8</Position>
+      <DataType>time|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="346" parent="301" name="slipFile">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="347" parent="301" name="nicNo">
+    <column id="347" parent="301" name="registrationNO">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="348" parent="301" name="did">
+    <column id="348" parent="301" name="nicNo">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="349" parent="301" name="FKs0gqemamcvhs1ysu119mqybfq">
+    <column id="349" parent="301" name="did">
+      <Position>12</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="350" parent="301" name="FKs0gqemamcvhs1ysu119mqybfq">
       <ColNames>registrationNO</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="350" parent="301" name="FK6yhyhg1lqdlqs8ognfpq3vq4p">
+    <index id="351" parent="301" name="FK6yhyhg1lqdlqs8ognfpq3vq4p">
       <ColNames>nicNo</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="351" parent="301" name="FKav2or7enfhp2prrtvluxjduds">
+    <index id="352" parent="301" name="FKav2or7enfhp2prrtvluxjduds">
       <ColNames>did</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="352" parent="301" name="PRIMARY">
+    <key id="353" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>rentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="353" parent="301" name="FKs0gqemamcvhs1ysu119mqybfq">
+    <foreign-key id="354" parent="301" name="FKs0gqemamcvhs1ysu119mqybfq">
       <ColNames>registrationNO</ColNames>
       <RefTableName>car</RefTableName>
       <RefColNames>registrationNO</RefColNames>
     </foreign-key>
-    <foreign-key id="354" parent="301" name="FK6yhyhg1lqdlqs8ognfpq3vq4p">
+    <foreign-key id="355" parent="301" name="FK6yhyhg1lqdlqs8ognfpq3vq4p">
       <ColNames>nicNo</ColNames>
       <RefTableName>customer</RefTableName>
       <RefColNames>nicNo</RefColNames>
     </foreign-key>
-    <foreign-key id="355" parent="301" name="FKav2or7enfhp2prrtvluxjduds">
+    <foreign-key id="356" parent="301" name="FKav2or7enfhp2prrtvluxjduds">
       <ColNames>did</ColNames>
       <RefTableName>driver</RefTableName>
       <RefColNames>did</RefColNames>
     </foreign-key>
-    <column id="356" parent="302" name="nicNo">
+    <column id="357" parent="302" name="nicNo">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="357" parent="302" name="address">
+    <column id="358" parent="302" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="358" parent="302" name="contactNo">
+    <column id="359" parent="302" name="contactNo">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="302" name="email">
+    <column id="360" parent="302" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="360" parent="302" name="isAccept">
+    <column id="361" parent="302" name="isAccept">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="361" parent="302" name="isDriverRequested">
+    <column id="362" parent="302" name="isDriverRequested">
       <Position>6</Position>
       <DataType>bit(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="362" parent="302" name="isRegistered">
+    <column id="363" parent="302" name="isRegistered">
       <Position>7</Position>
       <DataType>bit(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="302" name="licenceImg">
+    <column id="364" parent="302" name="licenceImg">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="364" parent="302" name="licenceNo">
+    <column id="365" parent="302" name="licenceNo">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="365" parent="302" name="nicImg">
+    <column id="366" parent="302" name="nicImg">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="366" parent="302" name="password">
+    <column id="367" parent="302" name="password">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="367" parent="302" name="type">
+    <column id="368" parent="302" name="type">
       <Position>12</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="368" parent="302" name="username">
+    <column id="369" parent="302" name="username">
       <Position>13</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="369" parent="302" name="PRIMARY">
+    <key id="370" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>nicNo</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="370" parent="303" name="did">
+    <column id="371" parent="303" name="did">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="371" parent="303" name="address">
+    <column id="372" parent="303" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="372" parent="303" name="contactNo">
+    <column id="373" parent="303" name="contactNo">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="373" parent="303" name="isAvailable">
+    <column id="374" parent="303" name="isAvailable">
       <Position>4</Position>
       <DataType>bit(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="374" parent="303" name="licenseNo">
+    <column id="375" parent="303" name="licenseNo">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="375" parent="303" name="name">
+    <column id="376" parent="303" name="name">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="376" parent="303" name="nicNo">
+    <column id="377" parent="303" name="nicNo">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="377" parent="303" name="password">
+    <column id="378" parent="303" name="password">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="378" parent="303" name="username">
+    <column id="379" parent="303" name="username">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="379" parent="303" name="car_idcar">
+    <column id="380" parent="303" name="car_idcar">
       <Position>10</Position>
       <DataType>bigint|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="380" parent="303" name="schedule_scheduleId">
+    <column id="381" parent="303" name="schedule_scheduleId">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="381" parent="303" name="FKrcbr2lfl12irvwbc7jkftq87w">
+    <index id="382" parent="303" name="FKrcbr2lfl12irvwbc7jkftq87w">
       <ColNames>car_idcar</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="382" parent="303" name="FKh90clkuy6ler80mqlvgpfxuum">
+    <index id="383" parent="303" name="FKh90clkuy6ler80mqlvgpfxuum">
       <ColNames>schedule_scheduleId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="383" parent="303" name="PRIMARY">
+    <key id="384" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>did</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="384" parent="303" name="FKrcbr2lfl12irvwbc7jkftq87w">
+    <foreign-key id="385" parent="303" name="FKrcbr2lfl12irvwbc7jkftq87w">
       <ColNames>car_idcar</ColNames>
       <RefTableName>car</RefTableName>
       <RefColNames>idcar</RefColNames>
     </foreign-key>
-    <foreign-key id="385" parent="303" name="FKh90clkuy6ler80mqlvgpfxuum">
+    <foreign-key id="386" parent="303" name="FKh90clkuy6ler80mqlvgpfxuum">
       <ColNames>schedule_scheduleId</ColNames>
       <RefTableName>driverschedule</RefTableName>
       <RefColNames>scheduleId</RefColNames>
     </foreign-key>
-    <column id="386" parent="304" name="scheduleId">
+    <column id="387" parent="304" name="scheduleId">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="387" parent="304" name="date">
+    <column id="388" parent="304" name="date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="388" parent="304" name="time">
+    <column id="389" parent="304" name="time">
       <Position>3</Position>
       <DataType>time|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="389" parent="304" name="car_idcar">
+    <column id="390" parent="304" name="car_idcar">
       <Position>4</Position>
       <DataType>bigint|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="390" parent="304" name="customer_nicNo">
+    <column id="391" parent="304" name="customer_nicNo">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="391" parent="304" name="FK9ie88m5thk3stwpa2y5nfx5ye">
+    <index id="392" parent="304" name="FK9ie88m5thk3stwpa2y5nfx5ye">
       <ColNames>car_idcar</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="392" parent="304" name="FKljo2heax4k6txgl1xfyw2x7to">
+    <index id="393" parent="304" name="FKljo2heax4k6txgl1xfyw2x7to">
       <ColNames>customer_nicNo</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="393" parent="304" name="PRIMARY">
+    <key id="394" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>scheduleId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="394" parent="304" name="FK9ie88m5thk3stwpa2y5nfx5ye">
+    <foreign-key id="395" parent="304" name="FK9ie88m5thk3stwpa2y5nfx5ye">
       <ColNames>car_idcar</ColNames>
       <RefTableName>car</RefTableName>
       <RefColNames>idcar</RefColNames>
     </foreign-key>
-    <foreign-key id="395" parent="304" name="FKljo2heax4k6txgl1xfyw2x7to">
+    <foreign-key id="396" parent="304" name="FKljo2heax4k6txgl1xfyw2x7to">
       <ColNames>customer_nicNo</ColNames>
       <RefTableName>customer</RefTableName>
       <RefColNames>nicNo</RefColNames>
     </foreign-key>
-    <column id="396" parent="305" name="next_val">
+    <column id="397" parent="305" name="next_val">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="397" parent="306" name="paymentId">
+    <column id="398" parent="306" name="paymentId">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="398" parent="306" name="fullPayment">
+    <column id="399" parent="306" name="fullPayment">
       <Position>2</Position>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="399" parent="306" name="isPay">
+    <column id="400" parent="306" name="isPay">
       <Position>3</Position>
       <DataType>bit(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="400" parent="306" name="lossDamageWaiver">
+    <column id="401" parent="306" name="lossDamageWaiver">
       <Position>4</Position>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="401" parent="306" name="paymentType">
+    <column id="402" parent="306" name="paymentType">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="402" parent="306" name="rentalFee">
+    <column id="403" parent="306" name="rentalFee">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="403" parent="306" name="customer_nicNo">
+    <column id="404" parent="306" name="customer_nicNo">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="404" parent="306" name="FKjglvkh4r64rqmotpakgffoiv3">
+    <index id="405" parent="306" name="FKjglvkh4r64rqmotpakgffoiv3">
       <ColNames>customer_nicNo</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="405" parent="306" name="PRIMARY">
+    <key id="406" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>paymentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="406" parent="306" name="FKjglvkh4r64rqmotpakgffoiv3">
+    <foreign-key id="407" parent="306" name="FKjglvkh4r64rqmotpakgffoiv3">
       <ColNames>customer_nicNo</ColNames>
       <RefTableName>customer</RefTableName>
       <RefColNames>nicNo</RefColNames>
     </foreign-key>
-    <column id="407" parent="307" name="roleId">
+    <column id="408" parent="307" name="roleId">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="408" parent="307" name="password">
+    <column id="409" parent="307" name="password">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="409" parent="307" name="type">
+    <column id="410" parent="307" name="type">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="410" parent="307" name="userName">
+    <column id="411" parent="307" name="userName">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="411" parent="307" name="PRIMARY">
+    <key id="412" parent="307" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>roleId</ColNames>
       <Primary>1</Primary>
