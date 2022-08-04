@@ -17,7 +17,7 @@ import java.util.List;
 public class CustomerDTO {
     private String nicNo;
     private String address;
-    private int contactNo;
+    private String contactNo;
     private String email;
     private String nicImg;
     private String licenceNo;

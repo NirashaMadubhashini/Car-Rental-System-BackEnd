@@ -42,4 +42,9 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     @Query(value = "SELECT COUNT(nicNo) FROM Customer WHERE status='Accepted'",nativeQuery = true)
     int countByCustomerId();
+
+    boolean existsByUsernameAndPassword(String username,String password);
+
+    Customer findDistinctByUsernameAndPassword(String username,String password);
+
 }

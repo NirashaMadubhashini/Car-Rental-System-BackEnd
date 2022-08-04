@@ -38,4 +38,6 @@ public interface DriverRepo extends JpaRepository<Driver, String> {
 
     @Query(value = "SELECT COUNT(did) FROM Driver WHERE availability=:availability", nativeQuery = true)
     int getCountOfDriversByStatus(@Param("availability") boolean availability);
+
+    boolean existsByUsernameAndPassword(String username,String password);
 }
