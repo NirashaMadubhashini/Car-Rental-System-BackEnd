@@ -45,6 +45,6 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     boolean existsByUsernameAndPassword(String username,String password);
 
-    Customer findDistinctByUsernameAndPassword(String username,String password);
+    Customer findByUsernameAndPassword(String username,String password);
 
 }

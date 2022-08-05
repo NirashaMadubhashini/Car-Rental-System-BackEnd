@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/login")
 @CrossOrigin
 public class LoginController {
 
@@ -21,13 +21,12 @@ public class LoginController {
     LoginService service;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseUtil saveCar(@RequestBody LoginDTO dto) {
+    public ResponseUtilLogin Login(@RequestBody LoginDTO dto) {
         String msg = "";
         if (!(dto.getUsername().equals("") && dto.getPassword().equals(""))){
-             msg = service.signIn(dto);
-            return new ResponseUtilLogin(200, msg, null);
+             return service.signIn(dto);
         }else {
-            return new ResponseUtilLogin(404, msg, null);
+            return new ResponseUtilLogin(404, msg, "null");
         }
 
     }

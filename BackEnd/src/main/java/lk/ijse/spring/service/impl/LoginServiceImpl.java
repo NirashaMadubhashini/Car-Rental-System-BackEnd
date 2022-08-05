@@ -32,29 +32,43 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public ResponseUtilLogin signIn(LoginDTO loginDTO) {
 
-        ResponseUtilLogin responseUtilLogin = null;
-        if(adminRepo.existsByUsernameAndPassword(loginDTO.getUsername(),loginDTO.getPassword())) {
+        ResponseUtilLogin responseUtilLogin = new ResponseUtilLogin();
+        if (adminRepo.existsByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword())) {
             responseUtilLogin.setCode(200);
-            responseUtilLogin.setMessage("Login Success Ful");
+            responseUtilLogin.setMessage("Login Successful");
             responseUtilLogin.setType("Admin");
-        }
-
-        if(driverRepo.existsByUsernameAndPassword(loginDTO.getUsername(),loginDTO.getPassword())){
+        } else if (driverRepo.existsByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword())) {
             responseUtilLogin.setCode(200);
-            responseUtilLogin.setMessage("Login Success Ful");
+            responseUtilLogin.setMessage("Login Successful");
             responseUtilLogin.setType("Driver");
 
+        } else if (customerRepo.existsByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword())) {
+
+            Customer cus = customerRepo.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+            if (cus.getIsAccept().equals("ACCEPTED")) {
+                responseUtilLogin.setCode(200);
+                responseUtilLogin.setMessage("Login Successful");
+                responseUtilLogin.setType("Customer");
+            } else if (cus.getIsAccept().equals("DENIED")) {
+                responseUtilLogin.setCode(403);
+                responseUtilLogin.setMessage("Login Request Was Denied By Admin");
+                responseUtilLogin.setType("Customer");
+            } else if (cus.getIsAccept().equals("PENDING")) {
+                responseUtilLogin.setCode(405);
+                responseUtilLogin.setMessage("Your Request Still Pending");
+                responseUtilLogin.setType("Customer");
+            } else {
+                responseUtilLogin.setCode(406);
+                responseUtilLogin.setMessage("Your Login Successful");
+                responseUtilLogin.setType("Customer");
+            }
+
+        } else{
+            responseUtilLogin.setCode(407);
+            responseUtilLogin.setMessage("Please Re-Check your Credentials");
+            responseUtilLogin.setType("null");
         }
 
-        if(customerRepo.existsByUsernameAndPassword(loginDTO.getUsername(),loginDTO.getPassword())){
-            Customer cus = customerRepo.findDistinctByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
-            responseUtilLogin.setCode(200);
-            responseUtilLogin.setMessage("Login Success Ful");
-            responseUtilLogin.setType("Customer");
-
-        }
-
-        return responseUtilLogin;
-
+            return responseUtilLogin;
     }
 }

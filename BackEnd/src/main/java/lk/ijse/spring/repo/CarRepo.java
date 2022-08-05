@@ -21,6 +21,11 @@ public interface CarRepo  extends JpaRepository<Car, Long> {
 
     @Modifying
     @Transactional
+    @Query(value = "UPDATE Car SET isAvailable=:isAvailable WHERE registrationNO=:registrationNO", nativeQuery = true)
+    void updateCustomerStatus(@Param("isAvailable") Boolean isAvailable,@Param("registrationNO") String registrationNO);
+
+    @Modifying
+    @Transactional
     @Query(value = "UPDATE Car  WHERE registrationNO=:registrationNO", nativeQuery = true)
     void updateCar( @Param("registrationNO") String registrationNO);
 
@@ -29,7 +34,7 @@ public interface CarRepo  extends JpaRepository<Car, Long> {
     @Query(value = "UPDATE Car SET frontViewImg=:frontViewImg,backViewImg=:backViewImg,internalViewImg=:internalViewImg,sideViewImg=:sideViewImg WHERE id=:id", nativeQuery = true)
     void updateCarFilePaths(@Param("frontViewImg") String frontViewImg, @Param("backViewImg") String backViewImg, @Param("internalViewImg") String internalViewImg, @Param("sideViewImg") String sideViewImg, @Param("id")  long id);
 
-    @Query(value = "SELECT * FROM Car WHERE status=:status", nativeQuery = true)
+    @Query(value = "SELECT * FROM Car WHERE isAvailable=:status", nativeQuery = true)
     List<Car> getAllCarsByStatus(@Param("status") String status);
 
     @Query(value = "SELECT COUNT(registrationNO) FROM Car WHERE status=:status", nativeQuery = true)

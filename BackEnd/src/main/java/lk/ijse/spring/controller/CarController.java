@@ -36,6 +36,15 @@ public class CarController {
         }
 
     }
+    @GetMapping(path = "pc/{registrationNO}/",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil acceptCar(@PathVariable String registrationNO) {
+        if (!(registrationNO.equals(""))){
+            service.changeCarStatus(registrationNO);
+            return new ResponseUtil(200, "Saved", null);
+        }else {
+            return new ResponseUtil(404, "NotSaved", null);
+        }
+    }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil updateCar(@RequestBody CarDTO dto) {

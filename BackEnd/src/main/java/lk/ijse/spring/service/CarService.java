@@ -13,6 +13,8 @@ public interface CarService {
 
     List<CarDTO> getAllCars();
 
+    void changeCarStatus(String rid);
+
     CarDTO searchCar(String registrationNO);
 
 //    void updateCar(String registrationNO);

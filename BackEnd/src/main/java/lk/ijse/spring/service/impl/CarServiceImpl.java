@@ -58,6 +58,15 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public void changeCarStatus(String rid) {
+        if (repo.existsByRegistrationNO(rid) ){
+            repo.updateCustomerStatus(true, rid);
+        } else {
+            throw new RuntimeException("");
+        }
+    }
+
+    @Override
     public CarDTO searchCar(String registrationNO) {
         return mapper.map(repo.findByRegistrationNO(registrationNO), CarDTO.class);
     }
